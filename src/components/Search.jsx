@@ -1,6 +1,6 @@
 function Search({ value, handleInputChange, handleFormSubmit }) {
   return (
-    <form>
+    <form id="form">
       <input
         type="text"
         value={value}

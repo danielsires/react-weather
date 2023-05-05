@@ -2,3 +2,19 @@ header {
     display: flex;
     justify-content: center;
 }
+
+#today-forecast {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#today-forecast img {
+    height: 50px;
+    width: 50px;
+}
+
+#form {
+    display:flex;
+    justify-content: center;
+}

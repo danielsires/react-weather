@@ -48,10 +48,6 @@ function App() {
         handleFormSubmit={handleFormSubmit}
       />
       <Today data={todaysWeather} />
-      {/* {todaysWeather ? <Today data={todaysWeather} /> : null} */}
-
-      {/* <WeatherContainer /> */}
-      {/* <Today data={weather} /> */}
     </div>
   );
 }
