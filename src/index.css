@@ -27,4 +27,12 @@ header {
 
 #day {
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#day h1 {
+  flex-direction: row;
 }
