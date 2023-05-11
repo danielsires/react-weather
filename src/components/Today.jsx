@@ -7,16 +7,18 @@ function Today({ data }) {
     <>
       {data ? (
         <div id="today-forecast">
+          <h1>{}</h1>
           <p>{data.name}</p>
-          <p>Temp: {data.main.temp}</p>
+          <p>Temp High: {Math.ceil(data.main.temp_max)}</p>
+          <p>Temp Low: {Math.ceil(data.main.temp_min)}</p>
+
           <img
             src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-            alt=""
+            alt="weather icon"
           />
         </div>
       ) : null}
     </>
-    // </div>
   );
 }
 

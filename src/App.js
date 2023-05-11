@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Search from './components/Search';
 import Today from './components/Today';
-// import WeatherContainer from './components/WeatherContainer';
-// import Today from './components/Today';
+import FiveDay from './components/FiveDay';
 
 function App() {
   const [search, setSearch] = useState('');
   const [todaysWeather, setTodaysWeather] = useState(null);
+  const [fiveDayForecast, setFiveDayForecast] = useState([]);
 
   useEffect(() => {
     setSearch('');
@@ -15,10 +15,10 @@ function App() {
 
   const getWeather = async (lat, lon) => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=090e4e64cd7d949a4ec9129c4689cd95`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=090e4e64cd7d949a4ec9129c4689cd95`
     );
     const data = await response.json();
-    // setTodaysWeather(data);
+    setFiveDayForecast(data);
     console.log(data);
   };
 
@@ -48,6 +48,9 @@ function App() {
         handleFormSubmit={handleFormSubmit}
       />
       <Today data={todaysWeather} />
+      <div id="fiveDay-forecast">
+        <FiveDay forecast={fiveDayForecast} />
+      </div>
     </div>
   );
 }
