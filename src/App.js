@@ -5,6 +5,10 @@ import Today from './components/Today';
 import FiveDay from './components/FiveDay';
 
 function App() {
+  const storedArray = localStorage.getItem('search-history');
+  const data = storedArray ? JSON.parse(storedArray) : [];
+
+  const [searchHistory, setSearchHistory] = useState(data);
   const [search, setSearch] = useState('');
   const [todaysWeather, setTodaysWeather] = useState(null);
   const [fiveDayForecast, setFiveDayForecast] = useState([]);
@@ -12,6 +16,10 @@ function App() {
   useEffect(() => {
     setSearch('');
   }, [todaysWeather]);
+
+  useEffect(() => {
+    localStorage.setItem('search-history', JSON.stringify(searchHistory));
+  }, [searchHistory]);
 
   const getWeather = async (lat, lon) => {
     const response = await fetch(
@@ -33,9 +41,24 @@ function App() {
     getWeather(lat, lon);
   };
 
+  const capitalizeSearch = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    getCoords(search);
+    if (searchHistory.indexOf(capitalizeSearch(search)) !== -1) {
+      getCoords(search);
+    } else {
+      setSearchHistory([...searchHistory, capitalizeSearch(search)]);
+      getCoords(search);
+    }
+
+    // if (searchHistory && searchHistory.indexOf(search != -1)) {
+    //   return;
+    // }
+    // localStorage.setItem('search-history', JSON.stringify(searchHistory));
+    // getCoords(search);
   };
 
   return (
@@ -45,7 +68,11 @@ function App() {
       <Search
         value={search}
         handleInputChange={(e) => setSearch(e.target.value)}
-        handleFormSubmit={handleFormSubmit}
+        handleFormSubmit={
+          search || searchHistory.indexOf(search === -1)
+            ? handleFormSubmit
+            : null
+        }
       />
       <Today data={todaysWeather} />
       <div id="fiveDay-forecast">
