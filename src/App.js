@@ -15,7 +15,7 @@ function App() {
 
   const getWeather = async (lat, lon) => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${process.env.API_KEY}`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
     );
     const data = await response.json();
     setFiveDayForecast(data);
@@ -24,7 +24,7 @@ function App() {
 
   const getCoords = async (query) => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${process.env.API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
     );
     const data = await response.json();
     console.log(data);
