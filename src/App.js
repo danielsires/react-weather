@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Search from './components/Search';
 import Today from './components/Today';
 import FiveDay from './components/FiveDay';
+import SearchHistory from './components/SearchHistory';
 
 function App() {
   const storedArray = localStorage.getItem('search-history');
@@ -53,12 +54,12 @@ function App() {
       setSearchHistory([...searchHistory, capitalizeSearch(search)]);
       getCoords(search);
     }
+  };
 
-    // if (searchHistory && searchHistory.indexOf(search != -1)) {
-    //   return;
-    // }
-    // localStorage.setItem('search-history', JSON.stringify(searchHistory));
-    // getCoords(search);
+  const handleSearchHistoryClick = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    getCoords(e.target.value);
   };
 
   return (
@@ -74,8 +75,14 @@ function App() {
             : null
         }
       />
-      <Today data={todaysWeather} />
-      <div id="fiveDay-forecast">
+      {searchHistory ? (
+        <SearchHistory
+          data={searchHistory}
+          handleSearchHistoryClick={handleSearchHistoryClick}
+        />
+      ) : null}
+      <div id="weather-container">
+        <Today data={todaysWeather} />
         <FiveDay forecast={fiveDayForecast} />
       </div>
     </div>

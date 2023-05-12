@@ -1,27 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* font-size: 56px; */
+}
 header {
   display: flex;
   justify-content: center;
 }
+header h1 {
+  font-size: 1.5em;
+  text-align: center;
+}
 
-#today-forecast {
+#today {
   display: flex;
   align-items: center;
+  width: 20%;
+  border: 1px solid black;
   flex-direction: column;
 }
 
-#today-forecast img {
+#today img {
   height: 50px;
   width: 50px;
+}
+
+#today h1 {
+  font-size: 1.2em;
 }
 
 #form {
   display: flex;
   justify-content: center;
 }
-
-#fiveDay-forecast {
+#weather-container {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
 }
 
@@ -31,8 +44,32 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  width: 20%;
+  font-size: 0.2em;
 }
 
 #day h1 {
   flex-direction: row;
+}
+
+#search-history-buttons {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+button {
+  margin: 1px;
+}
+
+@media only screen and (max-width: 667px) {
+  /* Styles for mobile devices */
+  /* Add your mobile-specific styles here */
+  #weather-container {
+    flex-direction: column;
+  }
+  #today,
+  #day {
+    width: 100%;
+    height: 100px;
+  }
 }

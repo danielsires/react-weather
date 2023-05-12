@@ -3,7 +3,7 @@ import React from 'react';
 function Header() {
   return (
     <header>
-      <h1>Weather App</h1>
+      <h1>NOON O'CLOCK WEATHER</h1>
     </header>
   );
 }

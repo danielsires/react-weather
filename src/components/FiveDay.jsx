@@ -10,9 +10,10 @@ function FiveDay({ forecast }) {
   if (filteredData) {
     return filteredData.map((obj, key) => (
       <div id="day" key={key}>
-        <h1>{dayjs(obj.dt_txt.split(' ')[0]).format('MM/DD/YYYY')}</h1>
-        <h1>{dayjs(obj.dt_txt.split(' ')[0]).format('dddd')} </h1>
-        <p>Temp {Math.ceil(obj.main.temp)}</p>
+        <p>{dayjs(obj.dt_txt.split(' ')[0]).format('MM/DD/YYYY')}</p>
+        <p>{dayjs(obj.dt_txt.split(' ')[0]).format('dddd')} </p>
+        <p>Temp High: {Math.ceil(obj.main.temp_max)}</p>
+        <p>Temp Low: {Math.ceil(obj.main.temp_min)}</p>
       </div>
     ));
   } else {
