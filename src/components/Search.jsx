@@ -6,7 +6,7 @@ function Search({ value, handleInputChange, handleFormSubmit }) {
         value={value}
         name="search"
         onChange={handleInputChange}
-        placeholder="Search City"
+        placeholder="Search City Not ZipCode"
         id="search"
       />
       <button onClick={handleFormSubmit} className="btn">
